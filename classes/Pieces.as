@@ -5,7 +5,7 @@
 	public class Pieces extends Array {
 		
 		public function Pieces(){
-			
+			//Constructor
 		}
 		
 		public function getPieceAt(x:Number, y:Number):CarromPiece{
