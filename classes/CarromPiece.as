@@ -1,6 +1,7 @@
 ﻿package classes {
 	
 	import flash.display.MovieClip;
+	import classes.Pieces;
 	
 	public class CarromPiece extends MovieClip {
 		protected var vX:Number;
