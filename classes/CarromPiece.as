@@ -28,10 +28,5 @@
 		public function get vy():Number{
 			return vY;
 		}
-		
-		// Tester funksjonalitet
-		public function plus(a:int, b:int):int{
-			return (a+b);
-		}
 	}
 }
