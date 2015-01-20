@@ -1,0 +1,24 @@
+Her er listen over ting som skal kodes.
+T: Tobias, D: Daniel
+-:uferdig, X:ferdig
+Når man holder på med noe, skriver man bokstaven sin inne i klammene[].
+
+## LISTE: ##
+[T] Lage og plassere et brett
+[-] Lage og plassere brikker i startposisjon
+[-] Lage meny ved siden av brettet
+[-] Lage et vindu hvor man kan lese reglene
+[-] Lage en rotasjonsanimasjon og rotere brettet når det er neste spiller sin tur.
+
+[X] Programmering av CarromPiece klasse (extends MovieClip)
+[X] Programmere en Pieces klasse (extends Array) som lagrer og utfører operasjoner på brikkene
+[-] Programmering av en oppdateringsfunksjon i pieces-klassen
+[-] Programmering av veggkollisjoner i pieces-klassen
+[-] Programmering av ballkollisjoner i pieces-klassen
+[-] Legge til muligheter for å regulere friksjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
+[-] Legge til muligheter for å regulere energitap ved kollisjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
+[-] Legge til en "striker" (brikka man skyter på)
+[-] Gjøre det mulig å plassere "striker" (langs nærmeste linje, og entet rett på den røde flekken, eller helt utenfor. Husk at man ikke kan sette den over eventuelle andre brikker)
+[-] Gjøre det mulig å skyte "striker" dersom den har blitt plassert. Når du skyter kan du velge styrke og retning.
+[-] Programmere inn regler for hvem sin tur det er. (Skifter tur dersom ingen eller egne brikker blir slått ned, eller hvis "striker" blir slått ned)
+[-] Programmere inn at dersom "striker" blir slått i hullet, blir en brikke plassert tilbake
