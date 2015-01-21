@@ -79,11 +79,7 @@
 		}
 		
 		public function Collider():void{
-<<<<<<< HEAD
-=======
 			var p1:CarromPiece = new CarromPiece();
->>>>>>> Liten feil syntaks
-			
 		}
 	}
 }
