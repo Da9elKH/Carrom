@@ -51,9 +51,9 @@
 			
 		private function CheckForCarromPieceCollision():void {
 				
-<<<<<<< HEAD
-			}
-			public function PerformCarromPieceCollision(obj1:CarromPiece, obj2:CarromPiece):void {
+		}
+		
+		public function PerformCarromPieceCollision(obj1:CarromPiece, obj2:CarromPiece):void {
 			
 			var dX:Number = obj1.x - obj2.x;
 			var dY:Number = obj1.y - obj2.y;
@@ -76,9 +76,6 @@
 			var vP2_New:Number = (m2 * vP2 - m1 * vP2 + 2 * m1 * vP1) / (m1 + m2);
 			trace("vN1=", vN1, " , vP1=", vP1, " , vP1_New=", vP1_New);
 			trace("vN2=", vN2, " , vP2=", vP2, " , vP2_New=", vP2_New);
-		}
-=======
->>>>>>> Endret små feil med funksjoner
 		}
 		
 		public function Collider():void{
