@@ -51,6 +51,30 @@
 			protected function CheckForCarromPieceCollision():void {
 				
 			}
+			public function PerformCarromPieceCollision(obj1:CarromPiece, obj2:CarromPiece):void {
+			
+			var dX:Number = obj1.x - obj2.x;
+			var dY:Number = obj1.y - obj2.y;
+			var d:Number = Math.sqrt(dX * dX + dY * dY);
+			
+			var m1:Number = obj1.mass;
+			var m2:Number = obj2.mass;
+			
+			var vX1:Number = obj1.vX;
+			var vX2:Number = obj2.vX;
+			var vY1:Number = obj1.vY;
+			var vY2:Number = obj2.vY;
+			
+			var vN1:Number = (vX1 * dY + vY1 * dX) / d;
+			var vN2:Number = (vX1 * dY + vY1 * dX) / d;
+			var vP1:Number = (vX1 * dX - vY1 * dY) / d;
+			var vP2:Number = (vX2 * dX - vY2 * dY) / d;
+			
+			var vP1_New:Number = (m1 * vP1 - m2 * vP1 + 2 * m2 * vP2) / (m1 + m2);
+			var vP2_New:Number = (m2 * vP2 - m1 * vP2 + 2 * m1 * vP1) / (m1 + m2);
+			trace("vN1=", vN1, " , vP1=", vP1, " , vP1_New=", vP1_New);
+			trace("vN2=", vN2, " , vP2=", vP2, " , vP2_New=", vP2_New);
+		}
 		}
 		
 		public function Collider():void{
