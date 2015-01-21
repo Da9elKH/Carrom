@@ -1,44 +1,44 @@
 ﻿package classes {
 	
 	import flash.display.MovieClip;
-	import classes.Pieces;
+	//import classes.Pieces;
 	
 	public class CarromPiece extends MovieClip {
-		protected var vX:Number;
-		protected var vY:Number;
-		protected var type:int;
-		protected var mass:Number;
+		protected var vx:Number;
+		protected var vy:Number;
+		protected var type:String;
+		protected var m:Number;
 		
 		public function CarromPiece(startX:Number, startY:Number, pieceType:String){
 			x = startX;
 			y = startY;
-			vX = 0;
-			vY = 0;
+			vx = 0;
+			vy = 0;
 			type = pieceType;
 			
 			if (type == "Striker") 
-				mass = 15;  
+				m = 15;  
 			else 
-				mass = 5; 
+				m = 5; 
 		}
 		
 		public function set vX(newValue:Number):void{
-			vX = newValue;
+			vx = newValue;
 		}
 		public function set vY(newValue:Number):void{
-			vY = newValue;
+			vy = newValue;
 		}
 		public function set mass(newValue:Number):void{
-			mass = newValue;
+			m = newValue;
 		}
 		public function get vX():Number{
-			return vX;
+			return vx;
 		}
 		public function get vY():Number{
-			return vY;
+			return vy;
 		}
 		public function get mass():Number{
-			return mass;
+			return m;
 		}
 	}
 }

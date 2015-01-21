@@ -40,8 +40,8 @@
 			CheckForCarromPieceCollision();
 			
 			for each(var piece:CarromPiece in this) {
-				piece.x += piece.vx;
-				piece.y += piece.vy;
+				piece.x += piece.vX;
+				piece.y += piece.vY;
 			}
 		}
 		
@@ -79,7 +79,6 @@
 		}
 		
 		public function Collider():void{
-			p1:CarromPiece = new CarromPiece();
 			
 		}
 	}
