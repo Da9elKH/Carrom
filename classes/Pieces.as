@@ -50,7 +50,19 @@
 		}
 			
 		private function CheckForCarromPieceCollision():void {
-				
+			for each(var piece1:CarromPiece in this) {
+				for each(var piece2:CarromPiece in this) {
+					if(piece1 != piece2){
+						var dx:Number = piece1.x - piece2.x;
+						var dy:Number = piece1.y - piece2.y;
+					
+						if(Math.sqrt(dx*dx+dy*dy)){
+							PerformCarromPieceCollision(piece,piece1)
+						}
+						
+					}
+				}
+			}
 		}
 		
 		public function PerformCarromPieceCollision(obj1:CarromPiece, obj2:CarromPiece):void {
@@ -68,7 +80,7 @@
 			var vY2:Number = obj2.vY;
 			
 			var vN1:Number = (vX1 * dY + vY1 * dX) / d;
-			var vN2:Number = (vX1 * dY + vY1 * dX) / d;
+			var vN2:Number = (vX2 * dY + vY2 * dX) / d;
 			var vP1:Number = (vX1 * dX - vY1 * dY) / d;
 			var vP2:Number = (vX2 * dX - vY2 * dY) / d;
 			
