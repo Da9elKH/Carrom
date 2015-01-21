@@ -36,11 +36,21 @@
 		}
 		
 		public function update():void {
+			CheckForWallCollision();
+			CheckForCarromPieceCollision();
+			
 			for each(var piece:CarromPiece in this) {
 				piece.x += piece.vx;
 				piece.y += piece.vy;
 			}
 			
+			protected function CheckForWallCollision():void {
+				
+			}
+			
+			protected function CheckForCarromPieceCollision():void {
+				
+			}
 		}
 		
 		public function Collider():void{
