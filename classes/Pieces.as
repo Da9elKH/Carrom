@@ -18,6 +18,7 @@
 			//ROTER BRETT TIL UTGANGSSTILLING
 			//SKRIV INN NAVN PÅ BRUKER KANSKJE???
 		}
+		
 		public function start():void {
 			timer.start();
 		}
@@ -25,6 +26,7 @@
 		public function stop():void{
 			timer.stop();
 		}
+		
 		public function getPieceAt(x:Number, y:Number):CarromPiece{
 			var temp:CarromPiece = null;
 			for each(var piece:CarromPiece in this){
@@ -36,7 +38,7 @@
 		}
 		
 		public function update():void {
-			CheckForWallCollision();
+			CheckAndPerformWallCollision();
 			CheckForCarromPieceCollision();
 			
 			for each(var piece:CarromPiece in this) {
@@ -45,8 +47,13 @@
 			}
 		}
 		
-		private function CheckForWallCollision():void {
-				
+		private function CheckAndPerformWallCollision():void {
+			for each(var piece:CarromPiece in this) {
+				if (piece.x >= 740) piece.vX = - Math.abs(piece.vX);
+				if (piece.x <= 0) piece.vX = Math.abs(piece.vX);
+				if (piece.y <= 0) piece.vY = Math.abs(piece.vY);
+				if (piece.y >= 740) piece.vY = - Math.abs(piece.vY);
+			}
 		}
 			
 		private function CheckForCarromPieceCollision():void {
@@ -57,7 +64,7 @@
 						var dy:Number = piece1.y - piece2.y;
 					
 						if(Math.sqrt(dx*dx+dy*dy)){
-							PerformCarromPieceCollision(piece,piece1)
+							PerformCarromPieceCollision(piece1,piece2)
 						}
 						
 					}
@@ -91,7 +98,7 @@
 		}
 		
 		public function Collider():void{
-			var p1:CarromPiece = new CarromPiece();
+			
 		}
 	}
 }
