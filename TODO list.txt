@@ -13,8 +13,10 @@ Når man holder på med noe, skriver man bokstaven sin inne i klammene[].
 [X] Programmering av CarromPiece klasse (extends MovieClip)
 [X] Programmere en Pieces klasse (extends Array) som lagrer og utfører operasjoner på brikkene
 [D] Programmering av en oppdateringsfunksjon av posisjon og lignende i pieces-klassen
-[-] Programmering av veggkollisjoner i pieces-klassen
 [T] Programmering av ballkollisjoner i pieces-klassen
+[-] Programmering av sjekking av kollisjoner med vegg i pieces-klassen
+[T] Programmering av ballkollisjoner i pieces-klassen
+[X] Programmering av sjekking av kollisjoner med annen ball i pieces-klassen
 [-] Legge til muligheter for å regulere friksjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
 [-] Legge til muligheter for å regulere energitap ved kollisjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
 [-] Legge til en "striker" (brikka man skyter på)
