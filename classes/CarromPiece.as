@@ -9,6 +9,14 @@
 		protected var type:String;
 		protected var m:Number;
 		
+		public function CarromPiece() {
+			x = 0;
+			y = 0;
+			vx = 0;
+			vy = 0;
+			type = 
+		}
+		
 		public function CarromPiece(startX:Number, startY:Number, pieceType:String){
 			x = startX;
 			y = startY;
