@@ -8,13 +8,13 @@
 		protected var vy:Number;
 		protected var type:String;
 		protected var m:Number;
+		protected var r:Number;
 		
 		public function CarromPiece() {
 			x = 0;
 			y = 0;
 			vx = 0;
 			vy = 0;
-			type = 
 		}
 		
 		public function CarromPiece(startX:Number, startY:Number, pieceType:String){
@@ -39,6 +39,9 @@
 		public function set mass(newValue:Number):void{
 			m = newValue;
 		}
+		public function set radius(newValue:Number):void{
+			r = newValue;
+		}
 		public function get vX():Number{
 			return vx;
 		}
@@ -47,6 +50,9 @@
 		}
 		public function get mass():Number{
 			return m;
+		}
+		public function get radius():Number {
+			return r;
 		}
 	}
 }
