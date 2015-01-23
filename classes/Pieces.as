@@ -58,7 +58,7 @@
 			
 		private function CheckForCarromPieceCollision():void {
 			for (var i:int = 1; i < this.length; i++ ) {
-				for (var j:int = 1; j < i; j++ ) {
+				for (var j:int = 0; j < i; j++ ) {
 					var dX:Number = this[i].x - this[j].y;
 					var dY:Number = this[i].y - this[j].y;
 					var maxD:Number = this[i].radius + this[j].radius;
