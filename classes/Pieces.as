@@ -9,14 +9,6 @@
 		
 		public function Pieces(){
 			timer.addEventListener(TimerEvent.TIMER, update);
-			newGame();
-		}
-		
-		public function newGame():void{
-			//PLASSERING AV BRIKKER
-			//RESETTING AV SCORE
-			//ROTER BRETT TIL UTGANGSSTILLING
-			//SKRIV INN NAVN PÅ BRUKER KANSKJE???
 		}
 		
 		public function start():void {
@@ -68,7 +60,7 @@
 					}
 				}
 			}
-			
+		}	
 		// Da fikk jeg omsider gjenoppdaget formlene for å omkomponere fartsvektorene, og ball-mot-ball kollisjoner skal nå fungere plettfritt.
 		// Den eneste eventuelle bekymringen jeg har er dersom ved bruk av friksjon, brikkene bremser ned og etter en kollisjon i neste 'tick'
 		// ikke er utenfor ballen den kolliderte med, vil nok en kollisjon bli utført, og ballene vil henge fast i hverandre. 

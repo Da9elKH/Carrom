@@ -3,32 +3,27 @@
 	import flash.display.MovieClip;
 	//import classes.Pieces;
 	
-	public class CarromPiece extends MovieClip {
+	public class CarromPiece extends MovieClip{
 		protected var vx:Number;
 		protected var vy:Number;
 		protected var type:String;
 		protected var m:Number;
 		protected var r:Number;
+		protected var s:MovieClip;
+		protected var X:Number;
+		protected var Y:Number;
 		
-		public function CarromPiece() {
-			x = 0;
-			y = 0;
-			vx = 0;
-			vy = 0;
-		}
 		
-		/*public function CarromPiece(startX:Number, startY:Number, pieceType:String){
+		public function CarromPiece(startX:Number, startY:Number, pieceType:String, symbol:MovieClip){
 			x = startX;
 			y = startY;
+			s = symbol;
+			s.x = x;
+			s.y = y;
 			vx = 0;
 			vy = 0;
 			type = pieceType;
-			
-			if (type == "Striker") 
-				m = 15;  
-			else 
-				m = 5; 
-		}*/
+		}
 		
 		public function set vX(newValue:Number):void{
 			vx = newValue;
