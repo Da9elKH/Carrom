@@ -17,7 +17,7 @@
 			vy = 0;
 		}
 		
-		public function CarromPiece(startX:Number, startY:Number, pieceType:String){
+		/*public function CarromPiece(startX:Number, startY:Number, pieceType:String){
 			x = startX;
 			y = startY;
 			vx = 0;
@@ -28,7 +28,7 @@
 				m = 15;  
 			else 
 				m = 5; 
-		}
+		}*/
 		
 		public function set vX(newValue:Number):void{
 			vx = newValue;

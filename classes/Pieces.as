@@ -5,7 +5,7 @@
 	import flash.events.TimerEvent;
 	
 	public class Pieces extends Array {
-		protected var timer:Timer = new Timer(0, 0);
+		protected var timer:Timer = new Timer(0,100);
 		
 		public function Pieces(){
 			timer.addEventListener(TimerEvent.TIMER, update);
@@ -64,7 +64,7 @@
 					var maxD:Number = this[i].radius + this[j].radius;
 					
 					if (dX * dX + dY * dY <= maxD * maxD) {
-						PerformCarromPieceCollision(piece1, piece2);
+						PerformCarromPieceCollision(this[i], this[j]);
 					}
 				}
 			}
