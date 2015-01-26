@@ -68,25 +68,7 @@
 					}
 				}
 			}
-			// Koden under utførte hver kollison 2 ganger, noe som ble et problem. F.eks kjører den både [index 4 mot 5] OG [index 5 mot 4].
-			// Dette fikset jeg i koden over ved å bruke for-loop i stedet for 'for each', hvor jeg fant en måte hvor ingen tall 'møtes' to ganger.
-			// Dette vil 'forsåget' da også doble ytelsen i forhold til kollisjonssjekking, ettersom bare halvparten så mange sjekker blir utført.
 			
-			/*for each(var piece1:CarromPiece in this) {
-				for each(var piece2:CarromPiece in this) {
-					if(piece1 != piece2){
-						var dx:Number = piece1.x - piece2.x;
-						var dy:Number = piece1.y - piece2.y;
-					
-						if(Math.sqrt(dx*dx+dy*dy)){
-							PerformCarromPieceCollision(piece1,piece2)
-						}
-						
-					}
-				}
-			}*/
-		}
-		
 		// Da fikk jeg omsider gjenoppdaget formlene for å omkomponere fartsvektorene, og ball-mot-ball kollisjoner skal nå fungere plettfritt.
 		// Den eneste eventuelle bekymringen jeg har er dersom ved bruk av friksjon, brikkene bremser ned og etter en kollisjon i neste 'tick'
 		// ikke er utenfor ballen den kolliderte med, vil nok en kollisjon bli utført, og ballene vil henge fast i hverandre. 
