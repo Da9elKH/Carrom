@@ -19,10 +19,12 @@ package classes {
 		/*public function BlackMan(){
 			x = 0;
 			y = 0;
-			vX = 0;
-			vY = 0;
+			vx = 0;
+			vy = 0;
 			r = 31 / 2;
 			m = 5;
 		}*/
+			type = "BlackMan";
+		}
 	}
 }
