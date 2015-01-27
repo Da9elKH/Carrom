@@ -4,10 +4,10 @@
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	
-	public class Pieces extends Array {
+	public class PieceEngine extends Array {
 		protected var timer:Timer = new Timer(0,100);
 		
-		public function Pieces(){
+		public function PieceEngine(){
 			timer.addEventListener(TimerEvent.TIMER, update);
 		}
 		
