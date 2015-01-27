@@ -9,7 +9,6 @@
 		protected var type:String;
 		protected var m:Number;
 		protected var r:Number;
-		protected var s:MovieClip;
 		protected var X:Number;
 		protected var Y:Number;
 		
