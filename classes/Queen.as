@@ -5,15 +5,14 @@ package classes {
 	public class Queen extends Piece{
 		protected var s:MovieClip;
 		
-		public function Queen(startX:Number, startY:Number, pieceType:String, symbol:MovieClip){
-			x = startX;
-			y = startY;
-			s = symbol;
-			s.x = x;
-			s.y = y;
+		public function Queen(){
+			x = 0;
+			y = 0;
 			vx = 0;
 			vy = 0;
-			type = pieceType;
+			r = 31 / 2;
+			m = 5;
+			type = "Queen";
 		}
 	}
 } 
