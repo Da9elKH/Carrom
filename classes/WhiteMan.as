@@ -1,9 +1,8 @@
-﻿package classes {
+package classes {
 	
-	import flash.display.MovieClip;
-	//import classes.Pieces;
+	import classes.Piece;
 	
-	public class CarromPiece extends MovieClip{
+	public class WhiteMan extends Piece{
 		protected var vx:Number;
 		protected var vy:Number;
 		protected var type:String;
