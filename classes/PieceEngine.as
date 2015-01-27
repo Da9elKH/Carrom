@@ -1,6 +1,6 @@
 ﻿package classes {
 	
-	import classes.CarromPiece;
+	import classes.Piece;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	
