@@ -10,6 +10,7 @@ package classes {
 			vy = 0;
 			r = 31 / 2;
 			m = 5;
+			//fric = 0.1;
 			type = "BlackMan";
 		}
 	}
