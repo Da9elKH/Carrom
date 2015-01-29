@@ -3,11 +3,9 @@ package classes {
 	import classes.Piece;
 	
 	public class BlackMan extends Piece{
-		protected var s:MovieClip;
-				
-		public function BlackMan(){
-			x = 0;
-			y = 0;
+		public function BlackMan(X:Number,Y:Number){
+			x = X;
+			y = Y;
 			vx = 0;
 			vy = 0;
 			r = 31 / 2;

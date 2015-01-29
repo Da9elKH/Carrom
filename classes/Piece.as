@@ -13,15 +13,8 @@
 		protected var Y:Number;
 		
 		
-		public function Piece(startX:Number, startY:Number, pieceType:String, symbol:MovieClip){
-			x = startX;
-			y = startY;
-			s = symbol;
-			s.x = x;
-			s.y = y;
-			vx = 0;
-			vy = 0;
-			type = pieceType;
+		public function Piece(){
+		
 		}
 		
 		public function set vX(newValue:Number):void{
