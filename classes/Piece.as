@@ -11,17 +11,11 @@
 		protected var r:Number;
 		protected var X:Number;
 		protected var Y:Number;
+		protected var fric:Number;
 		
 		
-		public function Piece(startX:Number, startY:Number, pieceType:String, symbol:MovieClip){
-			x = startX;
-			y = startY;
-			s = symbol;
-			s.x = x;
-			s.y = y;
-			vx = 0;
-			vy = 0;
-			type = pieceType;
+		public function Piece(){
+			fric = 0.01
 		}
 		
 		public function set vX(newValue:Number):void{
@@ -47,6 +41,9 @@
 		}
 		public function get radius():Number {
 			return r;
+		}
+		public function get friction():Number {
+			return fric;
 		}
 	}
 }

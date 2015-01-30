@@ -4,8 +4,8 @@ T: Tobias, D: Daniel
 Når man holder på med noe, skriver man bokstaven sin inne i klammene[].
 
 ## LISTE: ##
-[T] Lage og plassere et brett
-[-] Lage og plassere brikker i startposisjon
+[X] Lage og plassere et brett
+[X] Lage og plassere brikker i startposisjon
 [-] Lage meny ved siden av brettet
 [-] Lage et vindu hvor man kan lese reglene
 [-] Lage en rotasjonsanimasjon og rotere brettet når det er neste spiller sin tur.
@@ -14,9 +14,9 @@ Når man holder på med noe, skriver man bokstaven sin inne i klammene[].
 [X] Programmere en Pieces klasse (extends Array) som lagrer og utfører operasjoner på brikkene
 [D] Programmering av en oppdateringsfunksjon av posisjon og lignende i pieces-klassen
 [X] Programmering av ballkollisjoner i pieces-klassen
-[T] Programmering av sjekking av kollisjoner med vegg i pieces-klassen
+[X] Programmering av sjekking av kollisjoner med vegg i pieces-klassen
 [X] Programmering av sjekking av kollisjoner med annen ball i pieces-klassen
-[-] Legge til muligheter for å regulere friksjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
+[X] Legge til muligheter for å regulere friksjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
 [-] Legge til muligheter for å regulere energitap ved kollisjon (funksjon som tar inn gammel fart og returnerer ny fart f.eks)
 [-] Legge til en "striker" (brikka man skyter på)
 [-] Gjøre det mulig å plassere "striker" (langs nærmeste linje, og entet rett på den røde flekken, eller helt utenfor. Husk at man ikke kan sette den over eventuelle andre brikker)

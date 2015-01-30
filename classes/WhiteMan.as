@@ -3,15 +3,14 @@ package classes {
 	import classes.Piece;
 	
 	public class WhiteMan extends Piece{
-		protected var s:MovieClip;
-		
-		public function WhiteMan(){
-			x = 0;
-			y = 0;
+		public function WhiteMan(X:Number,Y:Number){
+			x = X;
+			y = Y;
 			vx = 0;
 			vy = 0;
 			r = 31 / 2;
 			m = 5;
+			//fric = 0.1;
 			type = "WhiteMan";
 		}
 	}
