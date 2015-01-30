@@ -98,10 +98,6 @@
 				piece.vY = 0;
 			}*/
 		}
-		// Da fikk jeg omsider gjenoppdaget formlene for å omkomponere fartsvektorene, og ball-mot-ball kollisjoner skal nå fungere plettfritt.
-		// Den eneste eventuelle bekymringen jeg har er dersom ved bruk av friksjon, brikkene bremser ned og etter en kollisjon i neste 'tick'
-		// ikke er utenfor ballen den kolliderte med, vil nok en kollisjon bli utført, og ballene vil henge fast i hverandre. 
-		// Dersom dette blir et problem (lite sannsynlig), har jeg en idè om hvordan jeg kan fikse det!
 		
 		private function PerformCarromPieceCollision(obj1, obj2):void {
 			var m1:Number = obj1.mass;
