@@ -15,7 +15,7 @@
 		
 		
 		public function Piece(){
-			fric = 0.005
+			fric = 0.01
 		}
 		
 		public function set vX(newValue:Number):void{

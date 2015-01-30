@@ -76,7 +76,19 @@
 		}
 		
 		private function applyFricition(piece:Piece):void {
-			if (Math.abs(piece.vX) > piece.friction) {
+			var vX:Number = piece.vX;
+			var vY:Number = piece.vY;
+			var v:Number = Math.sqrt(vX * vX + vY * vY);
+			
+			if (Math.abs(v) > piece.friction) {
+				piece.vX -= piece.friction * (vX / v);
+				piece.vY -= piece.friction * (vY / v);
+			}else {
+				piece.vX = 0;
+				piece.vY = 0;
+			}
+			
+			/*if (Math.abs(piece.vX) > piece.friction) {
 				piece.vX -= piece.friction * piece.vX / Math.abs(piece.vX);
 			} else {
 				piece.vX = 0;
@@ -84,7 +96,7 @@
 				piece.vY -= piece.friction * piece.vY / Math.abs(piece.vY);
 			} else {
 				piece.vY = 0;
-			}
+			}*/
 		}
 		// Da fikk jeg omsider gjenoppdaget formlene for å omkomponere fartsvektorene, og ball-mot-ball kollisjoner skal nå fungere plettfritt.
 		// Den eneste eventuelle bekymringen jeg har er dersom ved bruk av friksjon, brikkene bremser ned og etter en kollisjon i neste 'tick'
