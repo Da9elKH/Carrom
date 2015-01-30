@@ -45,18 +45,18 @@
 		
 		private function CheckAndPerformWallCollision():void {
 			for each(var piece in this) {
-				if (piece.x >= 740 - piece.radius) {
+				if (piece.x >= 370 - piece.radius) {
 					piece.vX = - Math.abs(piece.vX);
-					piece.x = 740 - piece.radius;
-				} if (piece.x <= piece.radius) {
+					piece.x = 370 - piece.radius;
+				} if (piece.x <= -370 + piece.radius) {
 					piece.vX = Math.abs(piece.vX);
-					piece.x = piece.radius;
-				} if (piece.y <= piece.radius) {
+					piece.x = -370 + piece.radius;
+				} if (piece.y <= -370 + piece.radius) {
 					piece.vY = Math.abs(piece.vY);
-					piece.y = piece.radius;
-				} if (piece.y >= 740 - piece.radius) {
+					piece.y = -370 + piece.radius;
+				} if (piece.y >= 370 - piece.radius) {
 					piece.vY = - Math.abs(piece.vY);
-					piece.y = 740 - piece.radius;
+					piece.y = 370 - piece.radius;
 				}
 			}
 		}
