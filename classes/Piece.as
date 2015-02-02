@@ -45,5 +45,8 @@
 		public function get friction():Number {
 			return fric;
 		}
+		public function get Type():String {
+			return type;
+		}
 	}
 }

@@ -11,8 +11,19 @@
 	
 	public dynamic class PieceEngine extends Array {
 		protected var timer:Timer = new Timer(0);
+		protected var board:MovieClip;
+		protected var holeArray:Array = new Array();
 		
-		public function newGame(board):void {
+		public function PieceEngine(Board:MovieClip){
+			timer.addEventListener(TimerEvent.TIMER, update);
+			board = Board;
+			holeArray.push(board.hole1);
+			holeArray.push(board.hole2);
+			holeArray.push(board.hole3);
+			holeArray.push(board.hole4);
+		}
+		
+		public function newGame():void {
 			const r:Number = 31/2;
 			for each(var piece in this) {
 				board.removeChild(piece);
@@ -50,10 +61,6 @@
 			start();
 		}
 		
-		public function PieceEngine(){
-			timer.addEventListener(TimerEvent.TIMER, update);
-		}
-		
 		public function start():void {
 			timer.start();
 		}
@@ -74,9 +81,11 @@
 		
 		public function update(e:TimerEvent):void {
 			for each(var piece in this) {
+				checkAndPerformHit(piece);
 				applyFricition(piece);
 				piece.x += piece.vX;
 				piece.y += piece.vY;
+				//piece.rotation += 1;
 			}
 			
 			CheckAndPerformWallCollision();
@@ -127,16 +136,6 @@
 				piece.vX = 0;
 				piece.vY = 0;
 			}
-			
-			/*if (Math.abs(piece.vX) > piece.friction) {
-				piece.vX -= piece.friction * piece.vX / Math.abs(piece.vX);
-			} else {
-				piece.vX = 0;
-			}if (Math.abs(piece.vY) > piece.friction) {
-				piece.vY -= piece.friction * piece.vY / Math.abs(piece.vY);
-			} else {
-				piece.vY = 0;
-			}*/
 		}
 		
 		private function PerformCarromPieceCollision(obj1, obj2):void {
@@ -171,8 +170,16 @@
 			obj2.y -= dY / (2 * d) * (obj1.radius + obj2.radius - d);
 		}
 		
-		public function Collider():void{
-			
+		private function checkAndPerformHit(obj:Piece):void{
+			for each(var hole in holeArray) {
+				var dx:Number = (hole.x - obj.x);
+				var dy:Number = (hole.y - obj.y);
+				var d:Number = Math.sqrt(dx * dx + dy * dy);
+				if (d < hole.width / 2 && obj.Type != "Striker") {
+					board.removeChild(obj);
+					splice(indexOf(obj),1);
+				}
+			}
 		}
 	}
 }
