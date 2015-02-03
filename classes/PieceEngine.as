@@ -129,9 +129,12 @@
 			var vY:Number = piece.vY;
 			var v:Number = Math.sqrt(vX * vX + vY * vY);
 			
-			if (Math.abs(v) > piece.friction) {
+			if (Math.abs(v) > 25*piece.friction) {
 				piece.vX -= piece.friction * (vX / v);
 				piece.vY -= piece.friction * (vY / v);
+			}else if (Math.abs(v) > 4*piece.friction) {
+				piece.vX -= 4*piece.friction * (vX / v);
+				piece.vY -= 4*piece.friction * (vY / v);
 			}else {
 				piece.vX = 0;
 				piece.vY = 0;
