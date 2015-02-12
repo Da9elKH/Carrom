@@ -24,7 +24,7 @@
 			holeArray.push(board.hole4);
 		}
 		
-		public get currentPlayer():int {
+		public function get currentPlayer():int {
 			return current_player;
 		}
 		
