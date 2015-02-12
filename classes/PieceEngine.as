@@ -13,6 +13,7 @@
 		protected var timer:Timer = new Timer(0);
 		protected var board:MovieClip;
 		protected var holeArray:Array = new Array();
+		protected var deadMen:Array = new Array();
 		protected var current_player:int;
 		
 		public function PieceEngine(Board:MovieClip){
@@ -38,6 +39,8 @@
 			
 			push(new Striker(0, 250));
 			
+			push(new Queen(0,0));
+			
 			push(new WhiteMan(0,	+2*Math.sqrt(3)*r	));
 			push(new WhiteMan(0, 	-2*Math.sqrt(3)*r	));
 			push(new WhiteMan(-3*r, +Math.sqrt(3)*r		));
@@ -47,8 +50,6 @@
 			push(new WhiteMan(r, 	-Math.sqrt(3)*r		));
 			push(new WhiteMan(3*r,	+Math.sqrt(3)*r		));
 			push(new WhiteMan(3*r,	-Math.sqrt(3)*r		));
-	
-			push(new Queen(0,0));
 	
 			push(new BlackMan(-4*r,	0					));
 			push(new BlackMan(-2*r,	2*Math.sqrt(3)*r	));
@@ -87,7 +88,7 @@
 		
 		public function update(e:TimerEvent):void {
 			for each(var piece in this) {
-				checkAndPerformHit(piece);
+				checkForDeadMen(piece);
 				applyFricition(piece);
 				piece.x += piece.vX;
 				piece.y += piece.vY;
@@ -179,13 +180,14 @@
 			obj2.y -= dY / (2 * d) * (obj1.radius + obj2.radius - d);
 		}
 		
-		private function checkAndPerformHit(obj:Piece):void{
+		private function checkForDeadMen(obj:Piece):void{
 			for each(var hole in holeArray) {
 				var dx:Number = (hole.x - obj.x);
 				var dy:Number = (hole.y - obj.y);
 				var d:Number = Math.sqrt(dx * dx + dy * dy);
 				if (d < hole.width / 2 && obj.Type != "Striker") {
 					board.removeChild(obj);
+					deadMen.push(obj);
 					splice(indexOf(obj),1);
 				}
 			}

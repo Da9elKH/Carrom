@@ -9,15 +9,22 @@
 		protected var type:String;
 		protected var m:Number;
 		protected var r:Number;
-		protected var X:Number;
-		protected var Y:Number;
 		protected var fric:Number;
+		protected var deadAt:int;
 		
 		
 		public function Piece(){
 			fric = 0.01
 		}
-		
+		public function get isDead():int{
+			return deadAt;
+		}
+		public function set isDead(newValue:int):void{
+			deadAt = newValue;
+		}
+		public function set vX(newValue:Number):void{
+			vx = newValue;
+		}
 		public function set vX(newValue:Number):void{
 			vx = newValue;
 		}
