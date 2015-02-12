@@ -15,6 +15,7 @@
 		protected var holeArray:Array = new Array();
 		protected var deadMen:Array = new Array();
 		protected var current_player:int;
+		protected var pieces_moving:Boolean;
 		
 		public function PieceEngine(Board:MovieClip){
 			timer.addEventListener(TimerEvent.TIMER, update);
@@ -33,6 +34,9 @@
 			current_player = newValue;
 		}
 		
+		public function get piecesIsMoving():Boolean{
+			return pieces_moving;
+		}
 		
 		public function newGame():void {
 			current_player = 1;
@@ -102,6 +106,16 @@
 			
 			CheckAndPerformWallCollision();
 			CheckForCarromPieceCollision();
+			CheckForMovingPieces();
+		}
+		
+		private function CheckForMovingPieces():void {		
+			pieces_moving = false;
+			for each (var piece in this) {
+				if (piece.vX != 0 || piece.vY != 0) {
+					pieces_moving = true;
+				}
+			}
 		}
 		
 		private function CheckAndPerformWallCollision():void {

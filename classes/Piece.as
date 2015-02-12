@@ -25,9 +25,6 @@
 		public function set vX(newValue:Number):void{
 			vx = newValue;
 		}
-		public function set vX(newValue:Number):void{
-			vx = newValue;
-		}
 		public function set vY(newValue:Number):void{
 			vy = newValue;
 		}
