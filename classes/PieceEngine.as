@@ -10,12 +10,17 @@
 	import flash.display.MovieClip;
 	
 	public dynamic class PieceEngine extends Array {
+		public var rotateTimer:Timer = new Timer(0,180);
 		protected var timer:Timer = new Timer(0);
 		protected var board:MovieClip;
 		protected var holeArray:Array = new Array();
 		protected var deadMen:Array = new Array();
 		protected var current_player:int;
-		protected var pieces_moving:Boolean;
+		protected var current_move:int;
+		
+		rotateTimer.addEventListener(TimerEvent.TIMER, rotateTick);
+		
+
 		
 		public function PieceEngine(Board:MovieClip){
 			timer.addEventListener(TimerEvent.TIMER, update);
@@ -34,12 +39,10 @@
 			current_player = newValue;
 		}
 		
-		public function get piecesIsMoving():Boolean{
-			return pieces_moving;
-		}
 		
 		public function newGame():void {
 			current_player = 1;
+			current_move = 1;
 			const r:Number = 31/2;
 			for each(var piece in this) {
 				board.removeChild(piece);
@@ -97,54 +100,65 @@
 		
 		public function update(e:TimerEvent):void {
 			for each(var piece in this) {
-				checkForDeadMen(piece);
-				applyFricition(piece);
-				piece.x += piece.vX;
-				piece.y += piece.vY;
-				//piece.rotation += 1;
+				if (!piece.isDead); {
+					checkForDeadMen(piece);
+					applyFricition(piece);
+					piece.x += piece.vX;
+					piece.y += piece.vY;
+					//piece.rotation += 1;
+				}
 			}
 			
 			CheckAndPerformWallCollision();
 			CheckForCarromPieceCollision();
 			CheckForMovingPieces();
+			if (!piecesIsMoving && !rotateTimer.running) {
+				rotateTimer.reset();
+				rotateTimer.start();
+			}
 		}
 		
-		private function CheckForMovingPieces():void {		
-			pieces_moving = false;
+		private function piecesIsMoving():Boolean {		
+			var pieces_moving:Boolean = false;
 			for each (var piece in this) {
 				if (piece.vX != 0 || piece.vY != 0) {
 					pieces_moving = true;
 				}
 			}
+			return pieces_moving
 		}
 		
 		private function CheckAndPerformWallCollision():void {
 			for each(var piece in this) {
-				if (piece.x >= 370 - piece.radius) {
-					piece.vX = - Math.abs(piece.vX);
-					piece.x = 370 - piece.radius;
-				} if (piece.x <= -370 + piece.radius) {
-					piece.vX = Math.abs(piece.vX);
-					piece.x = -370 + piece.radius;
-				} if (piece.y <= -370 + piece.radius) {
-					piece.vY = Math.abs(piece.vY);
-					piece.y = -370 + piece.radius;
-				} if (piece.y >= 370 - piece.radius) {
-					piece.vY = - Math.abs(piece.vY);
-					piece.y = 370 - piece.radius;
+				if(!piece.isDead){
+					if (piece.x >= 370 - piece.radius) {
+						piece.vX = - Math.abs(piece.vX);
+						piece.x = 370 - piece.radius;
+					} if (piece.x <= -370 + piece.radius) {
+						piece.vX = Math.abs(piece.vX);
+						piece.x = -370 + piece.radius;
+					} if (piece.y <= -370 + piece.radius) {
+						piece.vY = Math.abs(piece.vY);
+						piece.y = -370 + piece.radius;
+					} if (piece.y >= 370 - piece.radius) {
+						piece.vY = - Math.abs(piece.vY);
+						piece.y = 370 - piece.radius;
+					}
 				}
 			}
 		}
 			
 		private function CheckForCarromPieceCollision():void {
 			for (var i:int = 1; i < this.length; i++ ) {
-				for (var j:int = 0; j < i; j++ ) {
-					var dX:Number = this[i].x - this[j].x;
-					var dY:Number = this[i].y - this[j].y;
-					var minD:Number = this[i].radius + this[j].radius;
-				
-					if (dX * dX + dY * dY <= minD * minD) {
-						PerformCarromPieceCollision(this[i], this[j]);
+					for (var j:int = 0; j < i; j++ ) {
+						if(!this[i].isDead && !this[j].isDead){
+						var dX:Number = this[i].x - this[j].x;
+						var dY:Number = this[i].y - this[j].y;
+						var minD:Number = this[i].radius + this[j].radius;
+					
+						if (dX * dX + dY * dY <= minD * minD) {
+							PerformCarromPieceCollision(this[i], this[j]);
+						}
 					}
 				}
 			}
@@ -204,11 +218,21 @@
 				var dx:Number = (hole.x - obj.x);
 				var dy:Number = (hole.y - obj.y);
 				var d:Number = Math.sqrt(dx * dx + dy * dy);
-				if (d < hole.width / 2 && obj.Type != "Striker") {
+				if (d < hole.width / 2 && !obj.isDead) {
 					board.removeChild(obj);
-					deadMen.push(obj);
-					splice(indexOf(obj),1);
+					obj.isDead = current_move;
 				}
+			}
+		}
+		
+		protected function rotateTick(e:TimerEvent):void{			
+			board.rotation += 1;
+			if(Math.abs(board.rotation % 180) > 45 && Math.abs(board.rotation % 180) < 135){
+				board.scaleX = boardLength/740 * Math.sqrt(2)/2;
+				board.scaleY = boardLength/740 * Math.sqrt(2)/2;
+			}else{
+				board.height = boardLength;
+				board.width = boardLength;
 			}
 		}
 	}
