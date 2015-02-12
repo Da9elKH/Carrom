@@ -13,6 +13,7 @@
 		protected var timer:Timer = new Timer(0);
 		protected var board:MovieClip;
 		protected var holeArray:Array = new Array();
+		protected var current_player:int;
 		
 		public function PieceEngine(Board:MovieClip){
 			timer.addEventListener(TimerEvent.TIMER, update);
@@ -23,7 +24,12 @@
 			holeArray.push(board.hole4);
 		}
 		
+		public get currentPlayer():int {
+			return current_player;
+		}
+		
 		public function newGame():void {
+			current_player = 1;
 			const r:Number = 31/2;
 			for each(var piece in this) {
 				board.removeChild(piece);
