@@ -28,6 +28,11 @@
 			return current_player;
 		}
 		
+		public function set currentPlayer(newValue:int):void {
+			current_player = newValue;
+		}
+		
+		
 		public function newGame():void {
 			current_player = 1;
 			const r:Number = 31/2;
@@ -36,7 +41,7 @@
 			}
 			this.length = 0;
 			
-			push(new Striker(0, 250));
+			push(new Striker(0, 245.2));
 			
 			push(new WhiteMan(0,	+2*Math.sqrt(3)*r	));
 			push(new WhiteMan(0, 	-2*Math.sqrt(3)*r	));
