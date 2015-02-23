@@ -20,6 +20,14 @@
 		protected var roundPlayed:Boolean = false;
 		protected var players:Array = new Array();
 		
+		public function get Players():Array {
+			return players;
+		}
+		
+		public function set Players(newValue:Array):void {
+			players = newValue;
+		}
+		
 		public function get CurrentPlayer():int {
 			return currentPlayer;
 		}
