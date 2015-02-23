@@ -17,19 +17,7 @@
 		protected var deadMen:Array = new Array();
 		protected var current_player:int;
 		protected var current_move:int;
-		
-		rotateTimer.addEventListener(TimerEvent.TIMER, rotateTick);
-		
-
-		
-		public function PieceEngine(Board:MovieClip){
-			timer.addEventListener(TimerEvent.TIMER, update);
-			board = Board;
-			holeArray.push(board.hole1);
-			holeArray.push(board.hole2);
-			holeArray.push(board.hole3);
-			holeArray.push(board.hole4);
-		}
+		protected var roundPlayed:Boolean = false;
 		
 		public function get currentPlayer():int {
 			return current_player;
@@ -39,6 +27,15 @@
 			current_player = newValue;
 		}
 		
+		public function PieceEngine(Board:MovieClip){
+			rotateTimer.addEventListener(TimerEvent.TIMER, rotateTick);
+			timer.addEventListener(TimerEvent.TIMER, update);
+			board = Board;
+			holeArray.push(board.hole1);
+			holeArray.push(board.hole2);
+			holeArray.push(board.hole3);
+			holeArray.push(board.hole4);
+		}
 		
 		public function newGame():void {
 			current_player = 1;
@@ -64,12 +61,12 @@
 			push(new WhiteMan(3*r,	-Math.sqrt(3)*r		));
 	
 			push(new BlackMan(-4*r,	0					));
-			push(new BlackMan(-2*r,	2*Math.sqrt(3)*r	));
+			push(new BlackMan(-2*r,	+2*Math.sqrt(3)*r	));
 			push(new BlackMan(-2*r,	-2*Math.sqrt(3)*r	));
-			push(new BlackMan(-r,	Math.sqrt(3)*r		));
+			push(new BlackMan(-r,	+Math.sqrt(3)*r		));
 			push(new BlackMan(-r,	-Math.sqrt(3)*r		));
 			push(new BlackMan(2*r,	0					));
-			push(new BlackMan(2*r,	2*Math.sqrt(3)*r	));
+			push(new BlackMan(2*r,	+2*Math.sqrt(3)*r	));
 			push(new BlackMan(2*r,	-2*Math.sqrt(3)*r	));
 			push(new BlackMan(4*r,	0					));
 			
@@ -100,19 +97,21 @@
 		
 		public function update(e:TimerEvent):void {
 			for each(var piece in this) {
-				if (!piece.isDead); {
-					checkForDeadMen(piece);
-					applyFricition(piece);
-					piece.x += piece.vX;
-					piece.y += piece.vY;
-					//piece.rotation += 1;
-				}
+				checkForDeadMen(piece);
+				applyFricition(piece);
+				piece.x += piece.vX;
+				piece.y += piece.vY;
 			}
 			
 			CheckAndPerformWallCollision();
 			CheckForCarromPieceCollision();
-			CheckForMovingPieces();
-			if (!piecesIsMoving && !rotateTimer.running) {
+			
+			if (piecesIsMoving()) {
+				roundPlayed = true;
+			}
+			
+			if (!piecesIsMoving() && !rotateTimer.running && roundPlayed) {
+				roundPlayed = false;
 				rotateTimer.reset();
 				rotateTimer.start();
 			}
@@ -125,40 +124,36 @@
 					pieces_moving = true;
 				}
 			}
-			return pieces_moving
+			return pieces_moving;
 		}
 		
 		private function CheckAndPerformWallCollision():void {
 			for each(var piece in this) {
-				if(!piece.isDead){
-					if (piece.x >= 370 - piece.radius) {
-						piece.vX = - Math.abs(piece.vX);
-						piece.x = 370 - piece.radius;
-					} if (piece.x <= -370 + piece.radius) {
-						piece.vX = Math.abs(piece.vX);
-						piece.x = -370 + piece.radius;
-					} if (piece.y <= -370 + piece.radius) {
-						piece.vY = Math.abs(piece.vY);
-						piece.y = -370 + piece.radius;
-					} if (piece.y >= 370 - piece.radius) {
-						piece.vY = - Math.abs(piece.vY);
-						piece.y = 370 - piece.radius;
-					}
+				if (piece.x >= 370 - piece.radius) {
+					piece.vX = - Math.abs(piece.vX);
+					piece.x = 370 - piece.radius;
+				} if (piece.x <= -370 + piece.radius) {
+					piece.vX = Math.abs(piece.vX);
+					piece.x = -370 + piece.radius;
+				} if (piece.y <= -370 + piece.radius) {
+					piece.vY = Math.abs(piece.vY);
+					piece.y = -370 + piece.radius;
+				} if (piece.y >= 370 - piece.radius) {
+					piece.vY = - Math.abs(piece.vY);
+					piece.y = 370 - piece.radius;
 				}
 			}
 		}
 			
 		private function CheckForCarromPieceCollision():void {
 			for (var i:int = 1; i < this.length; i++ ) {
-					for (var j:int = 0; j < i; j++ ) {
-						if(!this[i].isDead && !this[j].isDead){
-						var dX:Number = this[i].x - this[j].x;
-						var dY:Number = this[i].y - this[j].y;
-						var minD:Number = this[i].radius + this[j].radius;
+				for (var j:int = 0; j < i; j++ ) {
+					var dX:Number = this[i].x - this[j].x;
+					var dY:Number = this[i].y - this[j].y;
+					var minD:Number = this[i].radius + this[j].radius;
 					
-						if (dX * dX + dY * dY <= minD * minD) {
-							PerformCarromPieceCollision(this[i], this[j]);
-						}
+					if (dX * dX + dY * dY <= minD * minD) {
+						PerformCarromPieceCollision(this[i], this[j]);
 					}
 				}
 			}
@@ -218,14 +213,16 @@
 				var dx:Number = (hole.x - obj.x);
 				var dy:Number = (hole.y - obj.y);
 				var d:Number = Math.sqrt(dx * dx + dy * dy);
-				if (d < hole.width / 2 && !obj.isDead) {
+				if (d < hole.width / 2) {
 					board.removeChild(obj);
-					obj.isDead = current_move;
+					deadMen[current_move].push(obj);
+					this.splice(this.indexOf(obj), 1);
 				}
 			}
 		}
 		
 		protected function rotateTick(e:TimerEvent):void{			
+			const boardLength:int = 600;
 			board.rotation += 1;
 			if(Math.abs(board.rotation % 180) > 45 && Math.abs(board.rotation % 180) < 135){
 				board.scaleX = boardLength/740 * Math.sqrt(2)/2;
@@ -237,3 +234,12 @@
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
