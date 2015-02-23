@@ -20,11 +20,20 @@
 		protected var roundPlayed:Boolean = false;
 		protected var players:Array = new Array();
 		
-		public function get currentPlayer():int {
+		
+		public function get Players():Array {
+			return players;
+		}
+		
+		public function set Players(newValue:Array):void {
+			players = newValue;
+		}
+		
+		public function get CurrentPlayer():int {
 			return currentPlayer;
 		}
 		
-		public function set currentPlayer(newValue:int):void {
+		public function set CurrentPlayer(newValue:int):void {
 			currentPlayer = newValue;
 		}
 		
@@ -39,7 +48,7 @@
 		}
 		
 		public function newGame():void {
-			currentPlayer = 0;
+			currentPlayer = 1;
 			currentRound = 1;
 			const r:Number = 31 / 2;
 			deadMen = new Array();
@@ -82,9 +91,12 @@
 		public function checkForNextRound() {
 			var nextPlayer:Boolean = false;
 			if (!deadMen[currentRound].length) nextPlayer = true;
-			if ()
+			//if ()
 		}
-		public function arrayContainsType(array:Array, type:String)
+		public function arrayContainsType(array:Array, type:String){
+			
+		}
+		
 		public function nextRound() {
 			currentRound++;
 			deadMen[currentRound] = new Array();
