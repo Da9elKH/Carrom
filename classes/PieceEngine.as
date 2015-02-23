@@ -15,16 +15,17 @@
 		protected var board:MovieClip;
 		protected var holeArray:Array = new Array();
 		protected var deadMen:Array = new Array();
-		protected var current_player:int;
-		protected var current_move:int;
+		protected var currentPlayer:int;
+		protected var currentRound:int;
 		protected var roundPlayed:Boolean = false;
+		protected var players:Array = new Array();
 		
 		public function get currentPlayer():int {
-			return current_player;
+			return currentPlayer;
 		}
 		
 		public function set currentPlayer(newValue:int):void {
-			current_player = newValue;
+			currentPlayer = newValue;
 		}
 		
 		public function PieceEngine(Board:MovieClip){
@@ -38,9 +39,10 @@
 		}
 		
 		public function newGame():void {
-			current_player = 1;
-			current_move = 1;
-			const r:Number = 31/2;
+			currentPlayer = 0;
+			currentRound = 1;
+			const r:Number = 31 / 2;
+			deadMen = new Array();
 			for each(var piece in this) {
 				board.removeChild(piece);
 			}
@@ -77,6 +79,20 @@
 			start();
 		}
 		
+		public function checkForNextRound() {
+			var nextPlayer:Boolean = false;
+			if (!deadMen[currentRound].length) nextPlayer = true;
+			if ()
+		}
+		public function arrayContainsType(array:Array, type:String)
+		public function nextRound() {
+			currentRound++;
+			deadMen[currentRound] = new Array();
+			currentPlayer = int(!Boolean(currentPlayer));
+			roundPlayed = false;
+			rotateTimer.reset();
+			rotateTimer.start();
+		}
 		public function start():void {
 			timer.start();
 		}
@@ -111,9 +127,7 @@
 			}
 			
 			if (!piecesIsMoving() && !rotateTimer.running && roundPlayed) {
-				roundPlayed = false;
-				rotateTimer.reset();
-				rotateTimer.start();
+				checkForNextRound();
 			}
 		}
 		
@@ -215,7 +229,7 @@
 				var d:Number = Math.sqrt(dx * dx + dy * dy);
 				if (d < hole.width / 2) {
 					board.removeChild(obj);
-					deadMen[current_move].push(obj);
+					deadMen[currentRound].push(obj);
 					this.splice(this.indexOf(obj), 1);
 				}
 			}
