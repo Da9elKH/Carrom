@@ -20,22 +20,6 @@
 		protected var roundPlayed:Boolean = false;
 		protected var players:Array = new Array();
 		
-		public function get Players():Array {
-			return players;
-		}
-		
-		public function set Players(newValue:Array):void {
-			players = newValue;
-		}
-		
-		public function get CurrentPlayer():int {
-			return currentPlayer;
-		}
-		
-		public function set CurrentPlayer(newValue:int):void {
-			currentPlayer = newValue;
-		}
-		
 		public function PieceEngine(Board:MovieClip){
 			rotateTimer.addEventListener(TimerEvent.TIMER, rotateTick);
 			timer.addEventListener(TimerEvent.TIMER, update);
@@ -47,7 +31,7 @@
 		}
 		
 		public function newGame():void {
-			currentPlayer = 0;
+			currentPlayer = 1;
 			currentRound = 1;
 			const r:Number = 31 / 2;
 			deadMen = new Array();
@@ -255,6 +239,22 @@
 				board.height = boardLength;
 				board.width = boardLength;
 			}
+		}
+		
+		public function get Players():Array {
+			return players;
+		}
+		
+		public function set Players(newValue:Array):void {
+			players = newValue;
+		}
+		
+		public function get CurrentPlayer():int {
+			return currentPlayer;
+		}
+		
+		public function set CurrentPlayer(newValue:int):void {
+			currentPlayer = newValue;
 		}
 	}
 }
