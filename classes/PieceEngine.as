@@ -20,11 +20,11 @@
 		protected var roundPlayed:Boolean = false;
 		protected var players:Array = new Array();
 		
-		public function get currentPlayer():int {
+		public function get CurrentPlayer():int {
 			return currentPlayer;
 		}
 		
-		public function set currentPlayer(newValue:int):void {
+		public function set CurrentPlayer(newValue:int):void {
 			currentPlayer = newValue;
 		}
 		
@@ -80,14 +80,16 @@
 		}
 		
 		public function checkForNextRound() {
-			var nextPlayer:Boolean = false;
-			if (!deadMen[currentRound].length) nextPlayer = true;
-			if ()
-		}
-		public function arrayContainsType(array:Array, type:String)
-		public function nextRound() {
 			currentRound++;
 			deadMen[currentRound] = new Array();
+			var nextPlayer:Boolean = false;
+			if (!deadMen[currentRound-1].length) nextPlayer = true;
+			//if ()
+		}
+//		public function arrayContainsType(array:Array, type:String):Boolean {
+//			//for each()
+//		}
+		public function nextRound() {
 			currentPlayer = int(!Boolean(currentPlayer));
 			roundPlayed = false;
 			rotateTimer.reset();
